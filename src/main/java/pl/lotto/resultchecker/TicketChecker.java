@@ -1,22 +1,18 @@
 package pl.lotto.resultchecker;
 
+import pl.lotto.numberreceiver.dto.LotteryTicketDto;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.springframework.stereotype.Component;
-import pl.lotto.numberreceiver.dto.LotteryTicketDto;
 
 public class TicketChecker {
-    private List<Integer> numbersOfHits;
-    List<LotteryTicketDto> ticketsFromUsers;
-
     List<CheckedTicket> checkAllTickets(Collection<Integer> luckyNumbers, List<LotteryTicketDto> ticketsFromUsers) {
         return ticketsFromUsers
                 .stream()
                 .map(lotteryTicketDto -> fromDto(luckyNumbers, lotteryTicketDto))
                 .collect(Collectors.toList());
-
     }
 
     private CheckedTicket fromDto(Collection<Integer> luckyNumbers, LotteryTicketDto ticket) {

@@ -3,7 +3,3 @@ lotto:
     lotteryRunOccurrence: "*/2 * * * * *"
     lotteryResultsAnnouncement: "*/2 * * * * *"
 
-
-
-
-

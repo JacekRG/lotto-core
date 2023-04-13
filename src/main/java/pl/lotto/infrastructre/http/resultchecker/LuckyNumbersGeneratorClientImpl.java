@@ -1,13 +1,16 @@
-package pl.lotto.resultchecker.luckyNumbersHttp;
+package pl.lotto.infrastructre.http.resultchecker;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import pl.lotto.resultchecker.LuckyNumbersGeneratorClient;
+import pl.lotto.resultchecker.dto.LuckyNumbersDto;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class LuckyNumbersGeneratorClientImpl implements LuckyNumbersGeneratorClient {
@@ -26,9 +29,6 @@ public class LuckyNumbersGeneratorClientImpl implements LuckyNumbersGeneratorCli
 
     @Override
     public LuckyNumbersDto retrieveLuckyNumbersForDate(LocalDateTime date) {
-//        String url = luckyNumbersGeneratorFacadeUrl + ":" + luckyNumbersGeneratorFacadePort + "/?" + "date="
-//                + date.format(DateTimeFormatter.ISO_DATE_TIME);
-
         String strip = date.format(DateTimeFormatter.ISO_DATE_TIME).strip();
         String url = UriComponentsBuilder
                 .fromUriString(luckyNumbersGeneratorFacadeUrl)

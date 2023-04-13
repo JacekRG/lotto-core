@@ -1,4 +1,4 @@
 package pl.lotto.resultchecker;
 
-public class DrawDateNotSpecifiedForTicketException extends RuntimeException{
+public class DrawDateNotSpecifiedForTicketException extends RuntimeException {
 }

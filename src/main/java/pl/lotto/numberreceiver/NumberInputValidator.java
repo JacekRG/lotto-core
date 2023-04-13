@@ -1,5 +1,8 @@
 package pl.lotto.numberreceiver;
 
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,15 +11,18 @@ import java.util.stream.Collectors;
 
 import static pl.lotto.numberreceiver.ValidationError.*;
 
+@AllArgsConstructor
 class NumberInputValidator {
 
-    private static final int MAX_NUMBERS_FROM_USER = 6;
-    private static final int MIN_INPUT_NUMBER = 1;
-    private static final int MAX_INPUT_NUMBER = 99;
-
-    List<ValidationError> errors = new LinkedList<>();
+    @Value("${numberInputValidator.maxNumbersFromUser:6}")
+    private final int maxNumbersFromUser;
+    @Value("${numberInputValidator.minInputNumber:1}")
+    private final int minInputNumber;
+    @Value("${numberInputValidator.maxInputNumber:99}")
+    private final int maxInputNumber;
 
     public ValidationResult validate(List<Integer> numbersFromUser) {
+        List<ValidationError> errors = new LinkedList<>();
         if (doesUserGaveDuplicatedNumbers(numbersFromUser)) {
             errors.add(DUPLICATED_NUMBERS);
         }
@@ -26,37 +32,29 @@ class NumberInputValidator {
         if (doesUserGaveMoreThanSixNumbers(numbersFromUser)) {
             errors.add(MORE_THAN_SIX_NUMBER);
         }
-        if (doesUserGaveNumbersInRange(numbersFromUser)) {
-            errors.add(NUMBERS_IN_RANGE);
-        }
         if (!errors.isEmpty()) {
-            String message = concatenateValidationMessage();
-            return new ValidationResult("failure");
+            String message = concatenateValidationMessage(errors);
+            return new ValidationResult(message);
         }
-        return new ValidationResult("success");
+        return new ValidationResult();
     }
 
-    private String concatenateValidationMessage() {
+    private String concatenateValidationMessage(List<ValidationError> errors) {
         return errors.stream()
                 .map(error -> error.message)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(", "));
     }
 
     private boolean doesUserGaveLessThanSixNumbers(List<Integer> numbersFromUser) {
-        return numbersFromUser.size() < MAX_NUMBERS_FROM_USER;
+        return numbersFromUser.size() < maxNumbersFromUser;
     }
 
     private boolean doesUserGaveMoreThanSixNumbers(List<Integer> numbersFromUser) {
-        return numbersFromUser.size() > MAX_NUMBERS_FROM_USER;
+        return numbersFromUser.size() > maxNumbersFromUser;
     }
 
     private boolean doesUserGaveDuplicatedNumbers(List<Integer> numbersFromUser) {
         Set<Integer> numberFromUserWithoutDuplicates = new HashSet<>(numbersFromUser);
         return numbersFromUser.size() != numberFromUserWithoutDuplicates.size();
     }
-
-    private boolean doesUserGaveNumbersInRange(List<Integer> numbersFromUser) {
-        return numbersFromUser.stream().anyMatch(number -> number < MIN_INPUT_NUMBER || number > MAX_INPUT_NUMBER);
-    }
-
 }

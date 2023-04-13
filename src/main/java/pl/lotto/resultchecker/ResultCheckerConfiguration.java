@@ -10,9 +10,10 @@ import java.time.Clock;
 public class ResultCheckerConfiguration {
 
     @Bean
-    public TicketChecker ticketChecker(){
+    public TicketChecker ticketChecker() {
         return new TicketChecker();
     }
+
     @Bean
     Clock clock() {
         return Clock.systemUTC();
@@ -22,5 +23,4 @@ public class ResultCheckerConfiguration {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-
 }

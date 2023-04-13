@@ -7,5 +7,4 @@ class LotteryIdGenerator {
     public static UUID generateLotteryId() {
         return UUID.randomUUID();
     }
-
 }

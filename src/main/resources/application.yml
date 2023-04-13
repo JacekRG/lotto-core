@@ -7,6 +7,7 @@ spring:
       uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/lotto-web?authSource=admin
 
 #      uri: mongodb://admin:admin@mongo_db/lotto-web?authSource=admin
+
 lotto:
   checker:
     lotteryResultsAnnouncement: "*/14 * * * * *"
@@ -14,6 +15,15 @@ lotto:
 luckyNumbersGeneratorFacade:
   url: http://ip-172-31-31-62.eu-central-1.compute.internal
   port: 8002
+
+drawDate:
+  hour: 12
+  day: DayOfWeek.SATURDAY
+
+numberInputValidator:
+  maxNumbersFromUser: 6
+  minInputNumber: 1
+  maxInputNumber: 99
 
 ##    drawTime: "${lotto.time.drawHour}:${lotto.time.drawMinutes}:${lotto.time.drawSeconds}"
 #  checker:

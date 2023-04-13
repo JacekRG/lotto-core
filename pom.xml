@@ -22,6 +22,7 @@
         <junit-jupiter.version>5.9.0</junit-jupiter.version>
         <assertj-core.version>3.23.1</assertj-core.version>
         <java.version>17</java.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
         <testcontainers.version>1.17.4</testcontainers.version>
         <awaitility.version>4.2.0</awaitility.version>
         <wiremock-jre8.version>2.35.0</wiremock-jre8.version>
@@ -102,6 +103,11 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
         </dependency>
     </dependencies>
 

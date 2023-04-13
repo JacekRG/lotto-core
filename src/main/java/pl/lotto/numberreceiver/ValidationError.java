@@ -11,7 +11,7 @@ enum ValidationError {
     NUMBERS_IN_RANGE("User gave numbers in range");
 
 
-    String message;
+   final String message;
 
     ValidationError(String message) {
         this.message = message;

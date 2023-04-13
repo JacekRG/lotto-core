@@ -32,12 +32,12 @@ public class InMemoryNumberReceiverRepositoryTestImpl implements NumberReceiverR
 
     @Override
     public <S extends LotteryTicket> S insert(S entity) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
     public <S extends LotteryTicket> List<S> insert(Iterable<S> entities) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
@@ -47,17 +47,17 @@ public class InMemoryNumberReceiverRepositoryTestImpl implements NumberReceiverR
 
     @Override
     public <S extends LotteryTicket> List<S> findAll(Example<S> example) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
     public <S extends LotteryTicket> List<S> findAll(Example<S> example, Sort sort) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
     public <S extends LotteryTicket> Page<S> findAll(Example<S> example, Pageable pageable) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
@@ -72,12 +72,12 @@ public class InMemoryNumberReceiverRepositoryTestImpl implements NumberReceiverR
 
     @Override
     public <S extends LotteryTicket, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
     public <S extends LotteryTicket> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
@@ -96,12 +96,12 @@ public class InMemoryNumberReceiverRepositoryTestImpl implements NumberReceiverR
 
     @Override
     public List<LotteryTicket> findAll() {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
     public List<LotteryTicket> findAllById(Iterable<UUID> uuids) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
@@ -136,11 +136,11 @@ public class InMemoryNumberReceiverRepositoryTestImpl implements NumberReceiverR
 
     @Override
     public List<LotteryTicket> findAll(Sort sort) {
-        return null;
+        throw new ImplementMeException();
     }
 
     @Override
     public Page<LotteryTicket> findAll(Pageable pageable) {
-        return null;
+        throw new ImplementMeException();
     }
 }

@@ -16,4 +16,8 @@ public record NumberReceiverResultDto(
     public static NumberReceiverResultDto success(String message, UUID lotteryID, LocalDateTime drawDate) {
         return new NumberReceiverResultDto(message, lotteryID, drawDate);
     }
+
+    public boolean isFailure() {
+        return message.equals("failure");
+    }
 }

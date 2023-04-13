@@ -12,4 +12,3 @@ public record CheckedTicketDto(
         List<Integer> numbersFromUser,
         Set<Integer> numbersOfHits) {
 }
-

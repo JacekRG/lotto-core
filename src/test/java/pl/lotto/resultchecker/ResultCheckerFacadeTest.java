@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import pl.lotto.numberreceiver.NumberReceiverFacade;
 import pl.lotto.numberreceiver.dto.AllNumbersFromUsersDto;
 import pl.lotto.numberreceiver.dto.LotteryTicketDto;
-import pl.lotto.resultchecker.luckyNumbersHttp.LuckyNumbersDto;
-import pl.lotto.resultchecker.luckyNumbersHttp.LuckyNumbersGeneratorClient;
+import pl.lotto.resultchecker.dto.CheckedTicketDto;
+import pl.lotto.resultchecker.dto.LuckyNumbersDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -35,10 +35,10 @@ public class ResultCheckerFacadeTest {
 
 
         // when
-        List<CheckedTicket> checkedTickets = resultCheckerFacade.generateResult();
+        List<CheckedTicketDto> checkedTickets = resultCheckerFacade.generateResults();
         // then
-        assertThat(checkedTickets.get(0).getNumbersOfHits().size()).isEqualTo(3);
-        Assertions.assertEquals(new HashSet<>(checkedTickets.get(0).getNumbersOfHits()), Set.of(21, 13, 1));
+        assertThat(checkedTickets.get(0).numbersOfHits().size()).isEqualTo(3);
+        Assertions.assertEquals(new HashSet<>(checkedTickets.get(0).numbersOfHits()), Set.of(21, 13, 1));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class ResultCheckerFacadeTest {
         given(luckyNumbersGeneratorFacade.retrieveLuckyNumbersForDate(examplaryDate)).willReturn(generateExamplaryLuckyNumbers(examplaryDate));
         luckyNumbersGeneratorFacade.retrieveLuckyNumbersForDate(examplaryDate);
         // when
-        Throwable throwable = catchThrowable(resultCheckerFacade::generateResult);
+        Throwable throwable = catchThrowable(resultCheckerFacade::generateResults);
         // then
         assertThat(throwable).isInstanceOf(DrawDateNotSpecifiedForTicketException.class);
     }

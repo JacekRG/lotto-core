@@ -32,10 +32,9 @@ public class NumberReceiverRestController {
     public ResponseEntity<NumberReceiverResultDto> inputNumbers(@RequestBody InputNumbersRequest request) {
         List<Integer> numbers = request.numbers();
         NumberReceiverResultDto numberReceiverResultDto = numberReceiverFacade.inputNumbers(numbers);
-        if (numberReceiverResultDto.message().equals("failure")) {
+        if (numberReceiverResultDto.isFailure()) {
             return ResponseEntity.status(BAD_REQUEST).body(numberReceiverResultDto);
         }
         return ResponseEntity.ok().body(numberReceiverResultDto);
     }
-
 }

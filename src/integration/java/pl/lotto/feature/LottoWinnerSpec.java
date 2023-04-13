@@ -105,12 +105,10 @@ public class LottoWinnerSpec extends BaseIntegrationTest {
         // when
         await().atMost(20, SECONDS)
                 .pollInterval(Duration.ofSeconds(1))
-                .until(() -> resultCheckerFacade.checkUniqueTicket(result.lotteryId())
+                .until(() -> resultCheckerFacade.checkIfTicketIsChecked(result.lotteryId())
                         .ticketStateDto()
                         .isChecked());
         // then
-
-
         // STEP 7 user wants to know if won using GET /winners/{userLotteryId} after draw
         // when
 

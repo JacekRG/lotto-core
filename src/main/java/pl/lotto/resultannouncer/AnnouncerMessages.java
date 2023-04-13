@@ -10,7 +10,7 @@ public enum AnnouncerMessages {
     TOO_EARLY("It's to early"),
     NOT_FOUND("Result not found");
 
-    String message;
+    final String message;
 
     AnnouncerMessages(String message) {
         this.message = message;
