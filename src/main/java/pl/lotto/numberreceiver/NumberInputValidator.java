@@ -15,11 +15,14 @@ import static pl.lotto.numberreceiver.ValidationError.*;
 class NumberInputValidator {
 
     @Value("${numberInputValidator.maxNumbersFromUser:6}")
-    private final int maxNumbersFromUser;
+    private int maxNumbersFromUser;
     @Value("${numberInputValidator.minInputNumber:1}")
-    private final int minInputNumber;
+    private int minInputNumber;
     @Value("${numberInputValidator.maxInputNumber:99}")
-    private final int maxInputNumber;
+    private int maxInputNumber;
+
+    public NumberInputValidator() {
+    }
 
     public ValidationResult validate(List<Integer> numbersFromUser) {
         List<ValidationError> errors = new LinkedList<>();

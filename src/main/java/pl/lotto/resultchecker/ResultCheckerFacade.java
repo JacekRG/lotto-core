@@ -22,13 +22,11 @@ import pl.lotto.resultchecker.dto.LuckyNumbersDto;
 
 @Component
 public class ResultCheckerFacade {
-    NumberReceiverFacade receiverFacade;
-    LuckyNumbersGeneratorClient generatorClient;
-    TicketChecker ticketChecker;
-    @Autowired
-    Clock clock;
-    ResultCheckerRepository repository;
-    CheckedTicketMapper checkedTicketMapper;
+    private final NumberReceiverFacade receiverFacade;
+    private final LuckyNumbersGeneratorClient generatorClient;
+    private final TicketChecker ticketChecker;
+    private final ResultCheckerRepository repository;
+    private CheckedTicketMapper checkedTicketMapper;
 
     @Autowired
     public ResultCheckerFacade(NumberReceiverFacade receiverFacade,
@@ -71,7 +69,7 @@ public class ResultCheckerFacade {
         CheckedTicket checkedTicket = repository.findById(id).orElseThrow(() -> {
             throw new MongoException("The ticket has not been checked yet");
         });
-        boolean isBeforeDraw = checkedTicket.getDrawDate().isAfter(LocalDateTime.now(clock));
+        boolean isBeforeDraw = checkedTicket.getDrawDate().isAfter(LocalDateTime.now());
         if (isBeforeDraw) {
             return new UniqueTicketResultDto(null, TicketStateDto.TOO_EARLY);
         }
